@@ -1,0 +1,72 @@
+{ config, pkgs, ... }:
+
+let 
+  # TODO: If have more DNS server control, can register subdomain
+  #       specific to service and add it to nginx proxy
+  #grafana_domain = "dashboard.${config.networking.hostName}.lan";
+  grafana_domain = "${config.networking.hostName}.lan";
+  grafana_port = 2342;
+in 
+{
+  ### Prometheus ###
+  services.prometheus = {
+    enable = true;
+    port = 9001;
+
+    exporters = {
+      node = {
+        enable = true;
+        enabledCollectors = [ "systemd" ];
+        port = 9002;
+      };
+    };
+
+    scrapeConfigs = [
+      {
+        job_name = "mapuche";
+        static_configs = [{
+          targets = [ "127.0.0.1:${toString config.services.prometheus.exporters.node.port}" ];
+        }];
+      }
+    ];
+  };
+
+  ### Grafana ###
+  services.grafana = {
+    enable = true;
+    settings.server = {
+      domain = grafana_domain;
+      http_port = grafana_port;
+      http_addr = "127.0.0.1";
+    };
+
+    provision = {
+      enable = true;
+      datasources.settings.datasources = [
+        {
+          name = "Prometheus";
+          type = "prometheus";
+          access = "proxy";
+          url = "http://127.0.0.1:${toString config.services.prometheus.port}";
+        }
+      ];
+    };
+  };
+
+  ### Nginx Reverse Proxy ###
+  services.nginx = {
+    enable = true;
+    recommendedProxySettings = true;
+    recommendedOptimisation = true;
+    recommendedGzipSettings = true;
+
+    virtualHosts.${grafana_domain} = {
+      locations."/" = {
+          proxyPass = "http://127.0.0.1:${toString grafana_port}";
+          proxyWebsockets = true;
+      };
+    };
+
+  };
+  networking.firewall.allowedTCPPorts = [ 80 443 ];
+}
