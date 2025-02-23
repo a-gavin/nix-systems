@@ -21,16 +21,16 @@
     interfaces = {
       eth0 = {
         ipv4.addresses = [
-          { address="162.55.50.213"; prefixLength=32; }
+          { address = "162.55.50.213"; prefixLength = 32; }
         ];
         ipv6.addresses = [
-          { address="2a01:4f8:c2c:f7a1::1"; prefixLength=64; }
-          { address="fe80::9400:4ff:fe16:579e"; prefixLength=64; }
+          { address = "2a01:4f8:c2c:f7a1::1"; prefixLength = 64; }
+          { address = "fe80::9400:4ff:fe16:579e"; prefixLength = 64; }
         ];
-        ipv4.routes = [ { address = "172.31.1.1"; prefixLength = 32; } ];
-        ipv6.routes = [ { address = "fe80::1"; prefixLength = 128; } ];
+        ipv4.routes = [{ address = "172.31.1.1"; prefixLength = 32; }];
+        ipv6.routes = [{ address = "fe80::1"; prefixLength = 128; }];
       };
-      
+
     };
   };
   services.udev.extraRules = ''

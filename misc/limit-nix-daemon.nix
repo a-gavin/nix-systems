@@ -5,21 +5,13 @@
     [
       ./boot.nix
       ./hardware.nix
+      ./monitoring.nix
     ];
 
   ### General System Settings ###
   #
   # Hostname
   networking.hostName = "mapuche";
-
-  # System users
-  # TODO: Figure out how to set password in NixOS build
-  users.users.alex = {
-    isNormalUser = true;
-    description = "alex";
-    extraGroups = [ "wheel" ];
-    packages = with pkgs; [ ];
-  };
 
   ### nix-daemon ###
   #

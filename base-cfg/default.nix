@@ -9,8 +9,14 @@
   ### General System Settings ###
   system.stateVersion = "24.11";
 
-  # Required to enable NixOS Flakes
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  ### Nix Settings ###
+  nix = {
+    # Automatically garbage collect to ensure disk not eaten up too quickly
+    gc.automatic = true;
+
+    # Required to enable NixOS Flakes
+    settings.experimental-features = [ "nix-command" "flakes" ];
+  };
 
   # Time zone and internationalization properties
   #
@@ -18,17 +24,15 @@
   time.timeZone = "America/Los_Angeles";
   i18n.defaultLocale = "en_US.UTF-8";
 
-  # Set default editor to vim
-  environment.variables = { EDITOR = "vim"; };
-
   ### System Packages ###
   environment.systemPackages = with pkgs; [
-    bind
+    bind # dig
     git
-    nixpkgs-fmt
-    pre-commit
-    tree
+    pciutils # lspci
     tmux
+    trace-cmd
+    tree
+    usbutils # lsusb
     wget
 
     # Vim with Nix syntax highlighting
@@ -49,4 +53,15 @@
       '';
     })
   ];
+
+  # Set default editor to vim
+  environment.variables = { EDITOR = "vim"; };
+
+  # Enable VSCode Server service (installed as part of flake)
+  services.vscode-server.enable = true;
+
+  ### System Users ###
+  # User configs in the modules/users/ folder
+  home-manager.useGlobalPkgs = true;
+  home-manager.useUserPackages = true;
 }
