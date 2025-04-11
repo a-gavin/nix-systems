@@ -27,10 +27,16 @@
   ### System Packages ###
   environment.systemPackages = with pkgs; [
     bind # dig
+    ethtool
     git
+    ipcalc
+    iw
+    minicom
+    mtr
     pciutils # lspci
     tmux
     trace-cmd
+    traceroute
     tree
     usbutils # lsusb
     wget

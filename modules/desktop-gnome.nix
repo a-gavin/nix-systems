@@ -48,7 +48,6 @@
     baobab # Disk usage analyzer
     cheese # Webcam tool
     epiphany # Web browser
-    evince # Document viewer
     geary # Email reader
     gedit # Text editor
     gnome-characters

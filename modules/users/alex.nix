@@ -35,8 +35,6 @@
     # Only this user will have these packages available
     # Global packages available to all users
     home.packages = with pkgs; [
-      iw
-      minicom
       nixpkgs-fmt
       pre-commit
     ];
