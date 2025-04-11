@@ -12,7 +12,7 @@
     ];
     openssh.authorizedKeys.keys = [
       # arrendajo
-      ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJdPy7ZNTFlJklv+6a66ttKSq9xm53VT06aJI8YTS8sG''
+      ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHN0etOw0cQcTny9JoqKlrLmAMmz5zJmaft5Z4Az8KJt''
 
       # caracara
       ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAtqJRFcSi539mLSqEeIGiD4QUNZV/+8jMagiPsqSQqI''
