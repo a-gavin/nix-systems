@@ -27,8 +27,8 @@
   ### System Packages ###
   environment.systemPackages = with pkgs; [
     bind # dig
+    curl
     ethtool
-    git
     ipcalc
     iw
     minicom
