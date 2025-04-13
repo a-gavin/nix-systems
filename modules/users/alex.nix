@@ -48,6 +48,9 @@
       enable = true;
       userName = "Alex Gavin";
       userEmail = "a_gavin@icloud.com";
+      includes = [
+        { path = "~/.config/git/email_config.inc"; }
+      ];
     };
 
     home.stateVersion = "24.11";
