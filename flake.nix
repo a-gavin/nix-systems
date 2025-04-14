@@ -13,22 +13,27 @@
       url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    agenix = {
+      url = "github:ryantm/agenix";
+      inputs.darwin.follows = ""; # Save resources by disabling Darwin dependencies
+    };
     vscode-server.url = "github:nix-community/nixos-vscode-server";
   };
 
-  outputs = { self, nixpkgs, disko, home-manager, vscode-server }: {
+  outputs = { self, nixpkgs, disko, home-manager, agenix, vscode-server }: {
     # arrendajo
     nixosConfigurations."arrendajo" = nixpkgs.lib.nixosSystem rec {
       system = "x86_64-linux";
       modules = [
         disko.nixosModules.disko
         home-manager.nixosModules.home-manager
+        agenix.nixosModules.default
         vscode-server.nixosModules.default
 
         ./systems/arrendajo/default.nix
         ./base-cfg/default.nix
-        ./modules/users/alex.nix
         ./modules/desktop-gnome.nix
+        ./users/alex.nix
       ];
     };
 
@@ -42,8 +47,8 @@
 
         ./systems/motmot/default.nix
         ./base-cfg/default.nix
-        ./modules/users/alex.nix
-        ./modules/desktop-hyprland.nix
+        #./modules/desktop-hyprland.nix
+        ./users/alex.nix
       ];
     };
 
@@ -55,7 +60,7 @@
 
         ./systems/quetzal/default.nix
         ./base-cfg/default.nix
-        ./modules/users/alex.nix
+        ./users/alex.nix
       ];
     };
   };

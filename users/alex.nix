@@ -20,6 +20,23 @@
   };
   nix.settings.trusted-users = [ "alex" ];
 
+  # Agenix config
+  age = {
+    identityPaths = [ "/home/alex/.ssh/id_ed25519" ];
+    secrets = {
+      ssh_hosts = {
+        file = ../secrets/ssh_hosts.age;
+        path = "/home/alex/.ssh/ssh_hosts.inc";
+        owner = "alex";
+      };
+      git_config = {
+        file = ../secrets/git_config.age;
+        path = "/home/alex/.config/git/config.inc";
+        owner = "alex";
+      };
+    };
+  };
+
   ### Core Home-Manager User Config ###
   # https://nix-community.github.io/home-manager/index.xhtml#sec-usage-configuration
   home-manager.users.alex = {
@@ -43,13 +60,22 @@
       pre-commit
     ];
 
+    # SSH configuration
+    #
+    # Relies on user Agenix config above.
+    # Required 'enable' set to 'true' in order for
+    # config to take effect
+    programs.ssh = {
+      enable = true;
+      #includes = [ (lib.removePrefix config.agenix.secrets.ssh_hosts.path) ];
+      includes = [ config.age.secrets.ssh_hosts.path ];
+    };
+
     # Git configuration
     programs.git = {
       enable = true;
-      userName = "Alex Gavin";
-      userEmail = "a_gavin@icloud.com";
       includes = [
-        { path = "~/.config/git/email_config.inc"; }
+        { path = config.age.secrets.git_config.path; }
       ];
     };
 
