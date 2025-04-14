@@ -22,7 +22,31 @@
     vscode
     wireshark
   ];
+
+  # Wireshark-specific config
+  #
+  # Overlay gets more recent version of Wireshark, as 24.11
+  # channel which currently using does not support decoding
+  # Wi-Fi RSN Element Override IEs
   programs.wireshark.enable = true;
+  nixpkgs.overlays = [
+    (final: prev: {
+      wireshark = prev.wireshark .overrideAttrs (old: {
+        version = "ssv0.9.2rc0";
+
+        src = pkgs.fetchFromGitLab {
+          repo = "wireshark";
+          owner = "wireshark";
+          rev = "ssv0.9.2rc0";
+          hash = "sha256-hb3r+3fA6UtIhKdNW2FTjOlF1atGzuAhhqca0+6pGc0=";
+        };
+
+        patches = [
+          ./patches/lookup-dumpcap-in-path.patch
+        ];
+      });
+    })
+  ];
 
   ### GNOME Config ###
   #
