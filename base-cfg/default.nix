@@ -31,8 +31,10 @@
     ethtool
     ipcalc
     iw
+    jq
     minicom
     mtr
+    nmap
     pciutils # lspci
     tmux
     trace-cmd
