@@ -21,6 +21,8 @@
     thunderbird
     vscode
     wireshark
+    zola # Static website generator, not GUI-only but really only gonna use on GUI workstation
+    zotero
   ];
 
   # Wireshark-specific config
