@@ -19,4 +19,18 @@ in
   #       keep private key in a separate file
   # Can do this w/ systemd-networkd possibly if use ActivatioPolicy=manual or similar
   # https://www.freedesktop.org/software/systemd/man/latest/systemd.network.html
+
+  ### NFS Mounts ###
+  #services.rpcbind.enable = true;
+  #environment.systemPackages = with pkgs; [ nfs-utils ];
+  #systemd.mounts = [{
+  #  type = "nfs";
+  #  wantedBy = [ "multi-user.target" ];
+  #  mountConfig = {
+  #    Options = "noatime";
+  #    TimeoutIdleSec = "600";
+  #  };
+  #  what = "172.31.0.20:/home/alex/dev/";
+  #  where = "/home/alex/dev/caracara/";
+  #}];
 }

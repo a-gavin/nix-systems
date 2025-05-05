@@ -33,7 +33,9 @@
         ./systems/arrendajo/default.nix
         ./base-cfg/default.nix
         ./modules/desktop-gnome.nix
-        ./users/alex.nix
+
+        ./users/alex/default.nix
+        ./users/alex/agenix.nix
       ];
     };
 
@@ -47,8 +49,8 @@
 
         ./systems/motmot/default.nix
         ./base-cfg/default.nix
-        #./modules/desktop-hyprland.nix
-        ./users/alex.nix
+
+        ./users/alex/default.nix
       ];
     };
 
@@ -60,7 +62,8 @@
 
         ./systems/quetzal/default.nix
         ./base-cfg/default.nix
-        ./users/alex.nix
+
+        ./users/alex/default.nix
       ];
     };
   };
