@@ -30,6 +30,7 @@
     curl
     ethtool
     ipcalc
+    iperf3
     iw
     jq
     minicom
