@@ -3,6 +3,13 @@ let
   alex_keys = [ alex_arrendajo ];
 in
 {
+  ### Agenix Secrets ###
+  #
+  # To edit, install agenix CLI utility and run with '-e' command,
+  # e.g. 'agenix -e ssh_hosts.age'
+  #
+  # Easiest to install with 'nix shell github:ryantm/agenix'
+  #
   "ssh_hosts.age".publicKeys = alex_keys;
   "git_config.age".publicKeys = alex_keys;
 }
