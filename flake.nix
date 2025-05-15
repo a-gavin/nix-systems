@@ -39,6 +39,24 @@
       ];
     };
 
+    # caracara
+    nixosConfigurations."caracara" = nixpkgs.lib.nixosSystem rec {
+      system = "x86_64-linux";
+      modules = [
+        disko.nixosModules.disko
+        home-manager.nixosModules.home-manager
+        agenix.nixosModules.default
+        vscode-server.nixosModules.default
+
+        ./systems/caracara/default.nix
+        ./base-cfg/default.nix
+        ./modules/desktop-gnome.nix
+
+        ./users/alex/default.nix
+        ./users/alex/agenix.nix
+      ];
+    };
+
     # motmot
     nixosConfigurations."motmot" = nixpkgs.lib.nixosSystem rec {
       system = "x86_64-linux";
