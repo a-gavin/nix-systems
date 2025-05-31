@@ -90,6 +90,7 @@
     hitori # Game
     iagno # Game
     simple-scan # Scanners
+    #snapshot  # Camera app (useful to verify camera for meeting)
     tali # Game
     totem # Video player
     xterm # Also have to disable this

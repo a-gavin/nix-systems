@@ -52,7 +52,7 @@
 
     # Vim with Nix syntax highlighting
     # TODO: Investigate moving this to using HomeManager
-    ((vim_configurable.override { }).customize {
+    ((vim.override { }).customize {
       name = "vim";
       vimrcConfig.packages.myplugins = with pkgs.vimPlugins; {
         start = [ vim-nix vim-lastplace ];
