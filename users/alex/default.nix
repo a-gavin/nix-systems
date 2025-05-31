@@ -20,6 +20,9 @@
   };
   nix.settings.trusted-users = [ "alex" ];
 
+  # Add to Wireshark users group (don't need root permissions to capture)
+  users.groups.wireshark = { members = [ "alex" ]; };
+
   ### Core Home-Manager User Config ###
   # https://nix-community.github.io/home-manager/index.xhtml#sec-usage-configuration
   home-manager.users.alex = {
