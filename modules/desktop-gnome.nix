@@ -25,30 +25,41 @@
     zotero
   ];
 
-  ## Wireshark-specific config
-  ##
-  ## Overlay gets more recent version of Wireshark, as 24.11
-  ## channel which currently using does not support decoding
-  ## Wi-Fi RSN Element Override IEs
-  #programs.wireshark.enable = true;
-  #nixpkgs.overlays = [
-  #  (final: prev: {
-  #    wireshark = prev.wireshark .overrideAttrs (old: {
-  #      version = "ssv0.9.2rc0";
+  # Wireshark-specific config
+  #
+  # Overlay gets more recent version of Wireshark, as 25.05
+  # channel which currently using does not support decoding
+  # Wi-Fi RSN Element Override IEs
+  #
+  # Unfortunately, even Wireshark's recent v4.4 release candidates
+  # don't include the patch adding RSN override support...which
+  # is from over nine months ago....
+  #
+  # Documentation links:
+  #   - Development roadmap: https://wiki.wireshark.org/Development/Roadmap
+  #   - Development lifecycle: https://wiki.wireshark.org/Development/LifeCycle
+  programs.wireshark.enable = true;
+  nixpkgs.overlays = [
+    (final: prev: {
+      wireshark = prev.wireshark.overrideAttrs (old: {
+        version = "826dd1d";
 
-  #      src = pkgs.fetchFromGitLab {
-  #        repo = "wireshark";
-  #        owner = "wireshark";
-  #        rev = "ssv0.9.2rc0";
-  #        hash = "sha256-hb3r+3fA6UtIhKdNW2FTjOlF1atGzuAhhqca0+6pGc0=";
-  #      };
+        src = pkgs.fetchFromGitLab {
+          repo = "wireshark";
+          owner = "wireshark";
+          rev = "826dd1d";
+          hash = "sha256-vSJqtAPlA5NVPRSyRk6seYhh0+dQFk4BUk4KmGrVlZY=";
+        };
 
-  #      patches = [
-  #        ./patches/lookup-dumpcap-in-path.patch
-  #      ];
-  #    });
-  #  })
-  #];
+        # Recently introduced libxml2 dependency
+        buildInputs = [ pkgs.libxml2 ] ++ old.buildInputs;
+
+        patches = [
+          ./patches/lookup-dumpcap-in-path.patch
+        ];
+      });
+    })
+  ];
 
   ### GNOME Config ###
   #
