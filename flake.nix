@@ -2,7 +2,7 @@
   description = "Personal machines";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
     disko = {
       # https://github.com/nix-community/disko/blob/master/docs/HowTo.md#installing-nixos-module
       url = "github:nix-community/disko/latest";
@@ -10,7 +10,7 @@
     };
     home-manager = {
       # https://nix-community.github.io/home-manager/index.xhtml#sec-flakes-nixos-module
-      url = "github:nix-community/home-manager/release-24.11";
+      url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     agenix = {
