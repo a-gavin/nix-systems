@@ -12,7 +12,13 @@
   ### Nix Settings ###
   nix = {
     # Automatically garbage collect to ensure disk not eaten up too quickly
-    gc.automatic = true;
+    #
+    # Set persistent, otherwise will not run if system is not powered on
+    # when automatic garbage collection triggered
+    gc = {
+	automatic = true;
+	persistent = true;
+    };
 
     # Required to enable NixOS Flakes
     settings.experimental-features = [ "nix-command" "flakes" ];
