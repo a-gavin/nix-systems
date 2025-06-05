@@ -57,6 +57,21 @@
       ];
     };
 
+    # ganso
+    nixosConfigurations."ganso" = nixpkgs.lib.nixosSystem rec {
+      system = "x86_64-linux";
+      modules = [
+        disko.nixosModules.disko
+        home-manager.nixosModules.home-manager
+        vscode-server.nixosModules.default
+
+        ./systems/ganso/default.nix
+        ./base-cfg/default.nix
+
+        ./users/alex/default.nix
+      ];
+    };
+
     # motmot
     nixosConfigurations."motmot" = nixpkgs.lib.nixosSystem rec {
       system = "x86_64-linux";
