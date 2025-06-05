@@ -35,6 +35,7 @@
     bind # dig
     curl
     ethtool
+    htop
     ipcalc
     iperf3
     iw
@@ -43,6 +44,8 @@
     mtr
     nmap
     pciutils # lspci
+    strace
+    tcpdump
     tmux
     trace-cmd
     traceroute
