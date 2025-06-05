@@ -1,0 +1,3 @@
+# BitMagic Probe
+ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="608c", MODE="0666", SYMLINK+="ttyBitmagic"
+ATTRS{idVendor}=="21a9", ATTRS{idProduct}=="1005", MODE="0666", SYMLINK+="ttyBitmagic"

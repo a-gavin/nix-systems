@@ -1,0 +1,2 @@
+# Give users in "usbmon" group access to usbmon interfaces
+SUBSYSTEM=="usbmon", GROUP="usbmon", MODE="640"

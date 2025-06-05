@@ -1,0 +1,10 @@
+# Raspberry Pi Pico
+ATTRS{idVendor}=="2e8a", ATTRS{idProduct}=="000a", MODE="0666", ENV{ID_MM_DEVICE_IGNORE}="1", ENV{ID_MM_PORT_IGNORE}="1"
+
+# AdaFruit Feather Express nRF52840
+ATTRS{idVendor}=="2fe3", ATTRS{idProduct}=="0100", MODE="0666", ENV{ID_MM_DEVICE_IGNORE}="1", ENV{ID_MM_PORT_IGNORE}="1"
+
+# Pine BL602 PineCone
+# NOTE: Uses Generic serial converter from QinHeng,
+# 	so will match other devices which use it as well
+ATTRS{idVendor}=="1a86", ATTRS{idProduct}=="7523", MODE="0666", ENV{ID_MM_DEVICE_IGNORE}="1", ENV{ID_MM_PORT_IGNORE}="1"
